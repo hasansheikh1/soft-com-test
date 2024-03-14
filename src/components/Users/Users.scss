@@ -1,0 +1,21 @@
+
+
+#user-container{
+
+    // .MuiDataGrid-columnHeaders {
+    //     background-color: #0047ab;
+    //     color: white;
+    // }
+        @font-face {
+            font-family: roboto;
+            src: url('../../assets/Poppins-Medium.ttf');
+        }
+
+}
+// .MuiDataGrid-row{
+//     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+//     padding: 10px;
+// }
+.MuiDataGrid-virtualScrollerRenderZone{
+    gap: 10px;
+}
