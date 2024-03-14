@@ -19,7 +19,7 @@ import { CallReceivedOutlined, Close, ExpandLess, ExpandMore, PhoneMissedOutline
 import { Avatar, Collapse, Menu, MenuItem, SwipeableDrawer, useMediaQuery } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import './Main.scss'
-import apiClient from '../../shared/apiClient';
+
 import logo from '../../assets/logo.png'
 
 import { useAuth } from '../Context/AuthProvider';
@@ -223,24 +223,7 @@ export default function Main({ children }) {
                                 </Menu>
                             </div>
                         </div>
-                        {/* <>
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={handleDrawerOpen}
-                            edge="start"
-                            sx={{
-                                marginRight: 5,
-                                // ...(open && { display: 'none' }),
-                            }}
-                        >
-                            {!open ? <MenuIcon /> : <Close />}
-                        </IconButton>
-                        <Typography variant="h6" noWrap component="div">
-                            A-K-U
-                        </Typography>
-                    </>
-                    <Button >FDSA</Button> */}
+                      
                     </Toolbar>
                 </AppBar>
                 {active === 'lg' ? (
@@ -282,8 +265,6 @@ export default function Main({ children }) {
 
 const MenuList = ({ theme, openMenu, setOpenMenu, handleDrawerClose }) => {
 
-    const [role, setContext] = React.useState(sessionStorage.getItem("role"))
-
 
 
     const items = [
@@ -292,7 +273,7 @@ const MenuList = ({ theme, openMenu, setOpenMenu, handleDrawerClose }) => {
             key: "users",
             name: "Users",
             path: '/user-permissions',
-            icon: <VerifiedUserOutlined />,
+            icon: <VerifiedUserOutlined sx={{color:'#000'}} />,
             child: []
         },
 
@@ -366,7 +347,7 @@ const MenuList = ({ theme, openMenu, setOpenMenu, handleDrawerClose }) => {
                             <Link className="link-tags" to={`${menu.path}`}>
                                 <ListItemButton sx={{ color: '#b3b4b9' }}>
                                     <ListItemIcon sx={{ color: '#b3b4b9' }} >
-                                        {/* {menu.icon} */}
+                                       
                                         {menu.icon}
                                     </ListItemIcon>
                                     <ListItemText sx={{ color: '#b3b4b9' }} primary={menu.name} />

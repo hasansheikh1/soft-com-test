@@ -6,10 +6,9 @@ import { Delete, Edit, PhonelinkLockOutlined, RemoveRedEyeOutlined, Save } from 
 import './Users.scss'
 import EditModal from '../EditModal/EditModal';
 import AddModal from '../AddModal/AddModal';
-import apiClient from '../../shared/apiClient';
 import DeleteModal from '../DeleteModal/DeleteModal';
-import ViewUserModal from '../ViewUserModal/ViewUserModal';
 import { useSelector } from 'react-redux';
+
 const Users = () => {
     const { users } = useSelector(state => state.users)
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Login.scss'
+import './Signup.scss'
 import illustration from '../../assets/education.png'
 import { Button, CircularProgress, Divider, InputAdornment, TextField } from '@mui/material'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -9,22 +9,46 @@ import * as yup from 'yup'
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { Google, Twitter } from '@mui/icons-material';
+import { styled } from "@mui/system";
 
 const validationSchema = yup.object({
+    name: yup
+        .string('Enter your full name')
+       
+        .required('Name is required!'),
     email: yup
         .string('Enter your email')
         .email('Enter a valid email')
-        .required('Email is required'),
+        .required('Email is required!'),
     password: yup
         .string('Enter your password')
-        .required('Password is required'),
+        .required('Password is required!'),
 })
 
-export default function Login() {
+const MuiText = styled(TextField)({
+    "& .MuiInputBase-input": {
+      width: 200, // Set your desired width here
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      background: "white",
+      // Add border styles for focus and active states
+      border: "1px solid #ccc",
+      "&:focus, &:active": {
+        borderColor: "red", // Change to your desired color
+      },
+    },
+    "& .MuiSelect-select": {
+      borderRadius: "20px",
+    },
+  });
+  
+export default function Signup() {
 
     const navigate = useNavigate()
     const formik = useFormik({
         initialValues: {
+            name:'',
             email: '',
             password: ''
         },
@@ -38,31 +62,22 @@ export default function Login() {
 
     const handleSubmit = (values) => {
       
-        navigate('/user-permissions')
+        navigate('/login')
     }
 
     return (
-        <div id='login-cont' className='login-container'>
+        <div id='signup-cont' className='login-container'>
 
-            <div className='left-panel'>
-            </div>
+            {/* <div className='left-panel'>
+            </div> */}
             <div className='login-form-cont'>
-
-                <div className='signup-wrapper'>
-                <span className='member'>
-                    Not a member?
-                </span>
-                <span className='member1'>
-                   <Link className="up-link" to={"/signup"}>Sign up now</Link>
-                </span>
-                </div>
 
                 {/* <div className='login-form'> */}
                 <div className='form-container'>
 
                     <div className='header-wrapper'>
                         <div className='form-heading'>
-                            Sign in to Dribble
+                            Sign Up to Dribble
                         </div>
                         <div className='form-txt'>
 
@@ -74,7 +89,7 @@ export default function Login() {
                                 variant="contained"
                                 fullWidth
                                 sx={{ bgcolor: '#4385f5', width: '80%', textTransform: 'none' }}>
-                                Sign in with Google
+                                Sign-Up with Google
                             </Button>
 
                             <Button
@@ -97,14 +112,21 @@ export default function Login() {
                             alignItems: 'flex-start',
                             width: '80%'
                         }}>
+
+                        
+
+
                         <div className='email-field'>
                             <TextField
 
-                                id="email"
-                                name='email'
-                                value={formik.values.email}
+                                id="name"
+                                name='name'
+                                value={formik.values.name}
                                 onChange={formik.handleChange}
                                 variant="outlined"
+                                label="Name"
+                                fullWidth
+                                placeholder='John Doe'
                                 sx={{
                                     '& .MuiOutlinedInput-root': {
                                         '&:hover fieldset': {
@@ -117,8 +139,41 @@ export default function Login() {
                                         },
                                     },
                                 }}
-                                label="Username"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+
+                                            <PersonOutlineOutlinedIcon sx={{ color: 'black' }} />
+                                        </InputAdornment>
+                                    ),
+                                }}
+
+                                error={formik.touched.name && Boolean(formik.errors.name)}
+                                helperText={formik.touched.name && formik.errors.name}
+                            />
+                        </div>
+                        <div className='email-field'>
+                            <TextField
+
+                                id="email"
+                                name='email'
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                variant="outlined"
+                                label="Email"
                                 fullWidth
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        '&:hover fieldset': {
+                                            borderColor: 'pink',
+                                            boxShadow: '0px 0px 5px rgba(255, 192, 203, 0.5)', 
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: 'pink', 
+                                            boxShadow: '0px 0px 5px rgba(255, 192, 203, 0.5)', 
+                                        },
+                                    },
+                                }}
                                 placeholder='johndoe1@example.com'
                                 InputProps={{
                                     startAdornment: (
@@ -139,9 +194,6 @@ export default function Login() {
                                 name='password'
                                 type='password'
                                 fullWidth
-                                id='password'
-                                value={formik.values.password}
-                                onChange={formik.handleChange}
                                 sx={{
                                     '& .MuiOutlinedInput-root': {
                                         '&:hover fieldset': {
@@ -154,6 +206,9 @@ export default function Login() {
                                         },
                                     },
                                 }}
+                                id='password'
+                                value={formik.values.password}
+                                onChange={formik.handleChange}
                                 variant="outlined"
                                 label="Password"
                                 placeholder='Password'
@@ -176,13 +231,13 @@ export default function Login() {
                             type='submit'
                             size='large'
                             variant="contained"
-                            // fullWidth
+                            fullWidth
                             style={{
                                 background: '#ea4c8a',
                                 textTransform: 'none',
-                                width: '200px'
+                                
                             }}>
-                            Sign In
+                            Sign Up
                         </Button>
                     </form>
                 </div>

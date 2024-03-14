@@ -4,9 +4,19 @@ const initialState = {
     users: [
         {
             "id": 1,
-            "name": "hasan",
+            "name": "Hasan",
             "description": "this is test description 1"
         },
+        {
+            "id": 2,
+            "name": "Ali",
+            "description": "this is test description 2"
+        },
+        {
+            "id": 3,
+            "name": "Ahmed Ali",
+            "description": "this is test description 3"
+        }
     ],
 }
 

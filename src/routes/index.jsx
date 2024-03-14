@@ -4,6 +4,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 // import Dashboard from "../components/dashboard/Dashboard";
 import Login from "../components/login/Login";
 import Users from "../components/Users/Users";
+import Signup from "../components/signup/Signup";
 
 
 const Routes = () => {
@@ -15,17 +16,14 @@ const Routes = () => {
             path: "/login",
             element: <Login />,
         },
-        {
-            path: "/about-us",
-            element: <div>About Us</div>,
-        },
+       
     ];
 
     // Define routes accessible only to authenticated users
     const routesForAuthenticatedOnly = [
         {
             path: "/",
-            element: <ProtectedRoute />, // Wrap the component in ProtectedRoute
+            element: <ProtectedRoute />, 
             children: [
 
 
@@ -42,10 +40,17 @@ const Routes = () => {
     // Define routes accessible only to non-authenticated users
     const routesForNotAuthenticatedOnly = [
 
+       
         {
             path: "/login",
             element: <Login />,
         },
+        {
+            path: "/signup",
+            element: <Signup />,
+        },
+
+
     ];
 
     // Combine and conditionally include routes based on authentication status
